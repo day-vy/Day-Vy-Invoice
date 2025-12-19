@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Dashboard Overview (Real-Time)</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body class="bg-secondary-bg min-h-screen p-4 sm:p-8">
+
+    <div class="max-w-7xl mx-auto">
+        <!-- Header -->
+        <header class="mb-8 md:mb-12">
+            <div class="flex items-center justify-between mb-4">
+                <div>
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-800 tracking-tight">
+                        Real-Time Sales Dashboard
+                    </h1>
+                    <p class="text-xl font-semibold text-primary-blue mt-2 p-1 px-3 bg-white rounded-lg inline-block shadow-sm">
+                        This Month: Live Data (LocalStorage)
+                    </p>
+                </div>
+                <a href="index.html" onclick="sessionStorage.setItem('skipLoginRedirect', 'true');" class="record-button bg-primary-blue text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-all">
+                    🏠 Return to Invoice
+                </a>
+            </div>
+        </header>
+
+
+        <!-- Metrics Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+
+            <!-- Card 1: Invoices Created -->
+            <div class="dashboard-card bg-white p-6 rounded-xl shadow-lg border-b-4 border-primary-blue transition duration-300 hover:shadow-xl hover:scale-[1.02]">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-lg font-medium text-gray-500 uppercase tracking-wider">
+                        Invoices Created
+                    </h2>
+                    <!-- Icon for visual appeal -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1e40af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text-check"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 13l2 2 4-4"/></svg>
+                </div>
+                <div class="text-5xl font-extrabold text-gray-900">
+                    <span id="monthlyInvoiceCount">0</span>
+                </div>
+                <p class="text-sm text-gray-400 mt-2">Saved in browser storage this month</p>
+            </div>
+
+            <!-- Card 2: Total Revenue -->
+            <div class="dashboard-card bg-white p-6 rounded-xl shadow-lg border-b-4 border-green-500 transition duration-300 hover:shadow-xl hover:scale-[1.02]">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-lg font-medium text-gray-500 uppercase tracking-wider">
+                        Total Revenue
+                    </h2>
+                    <!-- Icon for visual appeal -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-banknote"><rect width="20" height="12" x="2" y="6" rx="3"/><path d="M2 12h20"/><path d="M12 12v3M15 15l-3-3-3 3"/></svg>
+                </div>
+                <div class="text-5xl font-extrabold text-gray-900">
+                    <span id="monthlyRevenue">$0.00</span>
+                </div>
+                <p class="text-sm text-gray-400 mt-2">Sum of all transaction amounts</p>
+            </div>
+
+            <!-- Card 3: Average Invoice Value -->
+            <div class="dashboard-card bg-white p-6 rounded-xl shadow-lg border-b-4 border-yellow-500 transition duration-300 hover:shadow-xl hover:scale-[1.02]">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-lg font-medium text-gray-500 uppercase tracking-wider">
+                        Avg Invoice Value
+                    </h2>
+                    <!-- Icon for visual appeal -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-line-chart"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+                </div>
+                <div class="text-5xl font-extrabold text-gray-900">
+                    <span id="avgInvoiceValue">$0.00</span>
+                </div>
+                <p class="text-sm text-gray-400 mt-2">Revenue divided by invoice count</p>
+            </div>
+
+        </div>
+        <!-- End of Metrics Grid -->
+
+        <!-- Status Message -->
+        <div class="mt-8 text-center">
+            <p id="statusMessage" class="text-sm text-gray-500">Initializing dashboard...</p>
+        </div>
+    </div>
+
+    <!-- Custom Status Modal (Replaces alert()) -->
+    <div id="statusModal" class="hidden fixed bottom-5 right-5 z-50 w-full max-w-sm rounded-xl shadow-2xl overflow-hidden transform transition-all duration-300">
+        <div class="bg-white rounded-xl border border-gray-200">
+            <div id="modalHeader" class="p-3 rounded-t-xl text-white font-semibold bg-primary-blue">
+                <h3 id="modalTitle" class="text-lg">Notification</h3>
+            </div>
+            <div class="p-4">
+                <p id="modalMessage" class="text-sm text-gray-700">Message content.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../script/dashboard.js"></script>
+</body>
+</html>
